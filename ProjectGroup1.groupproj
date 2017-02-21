@@ -1,0 +1,39 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F0E35A39-58B8-4A7E-82F1-0E0ECA60C4AC}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Project2_XE4.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\AutoFindPatcherOld\Project2_XE4.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Project2_XE4">
+        <MSBuild Projects="..\AutoFindPatcherOld\Project2_XE4.dproj"/>
+    </Target>
+    <Target Name="Project2_XE4:Clean">
+        <MSBuild Projects="..\AutoFindPatcherOld\Project2_XE4.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project2_XE4:Make">
+        <MSBuild Projects="..\AutoFindPatcherOld\Project2_XE4.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Project2_XE4;Project2_XE4"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Project2_XE4:Clean;Project2_XE4:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Project2_XE4:Make;Project2_XE4:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
